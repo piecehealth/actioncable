@@ -18,7 +18,7 @@ type Cable struct {
 	Config              *config
 	PubSub              PubSub
 	connections         map[*Connection]struct{}
-	channelDescriptions map[string]*ChannelDescripion
+	channelDescriptions map[string]*ChannelDescription
 }
 
 var logger Logger
@@ -28,7 +28,7 @@ func NewActionCable(cfg *config) *Cable {
 		Config:              cfg,
 		PubSub:              cfg.pubsub,
 		connections:         map[*Connection]struct{}{},
-		channelDescriptions: map[string]*ChannelDescripion{},
+		channelDescriptions: map[string]*ChannelDescription{},
 	}
 	logger = cfg.logger
 
@@ -87,7 +87,7 @@ func (cb *Cable) Handle(w http.ResponseWriter, r *http.Request) error {
 	return nil
 }
 
-func (cb *Cable) RegisterChannel(cd *ChannelDescripion) {
+func (cb *Cable) RegisterChannel(cd *ChannelDescription) {
 	if cd.Name == "" {
 		panic(fmt.Sprintf("channel name can't be nil: %+v", cd))
 	}

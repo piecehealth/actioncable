@@ -114,7 +114,7 @@ func TestExecuteCommand(t *testing.T) {
 
 	messages := []string{}
 
-	conn.cable.RegisterChannel(&ChannelDescripion{
+	conn.cable.RegisterChannel(&ChannelDescription{
 		Name:          "ChatChannel",
 		PerformAction: func(_ *Channel, msg string) { messages = append(messages, msg) },
 	})

@@ -222,7 +222,7 @@ func (conn *Connection) subscribeToInternalChannel() {
 
 	name := fmt.Sprintf("action_cable/%v", conn.identifier)
 
-	cd := &ChannelDescripion{Name: name}
+	cd := &ChannelDescription{Name: name}
 	ch := newChannel(conn, name, nil, cd, func(ch *Channel, data []byte) {
 		var msg struct {
 			Type string `json:"type"`

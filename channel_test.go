@@ -12,7 +12,7 @@ func TestStreamFromAndStopStreamFor(t *testing.T) {
 	conn, ws := newTestConnection("test")
 	cable := conn.cable
 
-	cable.RegisterChannel(&ChannelDescripion{
+	cable.RegisterChannel(&ChannelDescription{
 		Name: "RoomChannel",
 		Subscribed: func(c *Channel) {
 			getRoomId := func(msg json.RawMessage) string {
@@ -74,7 +74,7 @@ func TestReject(t *testing.T) {
 	conn, ws := newTestConnection("test")
 	cable := conn.cable
 
-	cable.RegisterChannel(&ChannelDescripion{
+	cable.RegisterChannel(&ChannelDescription{
 		Name: "RoomChannel",
 		Subscribed: func(c *Channel) {
 			params := struct {
@@ -139,7 +139,7 @@ func TestBroadcast(t *testing.T) {
 		return "room_" + strconv.Itoa(params.Id)
 	}
 
-	cable.RegisterChannel(&ChannelDescripion{
+	cable.RegisterChannel(&ChannelDescription{
 		Name: "RoomChannel",
 		Subscribed: func(c *Channel) {
 			c.StreamFrom(getRoomId(c.Params))

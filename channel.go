@@ -10,7 +10,7 @@ type ChannelSubscribedCallback func(*Channel)
 type ChannelUnsubscribedCallback func(*Channel)
 type ChannelPerformActionCallback func(*Channel, string)
 
-type ChannelDescripion struct {
+type ChannelDescription struct {
 	Name          string
 	Subscribed    ChannelSubscribedCallback
 	Unsubscribed  ChannelUnsubscribedCallback
@@ -46,7 +46,7 @@ type Channel struct {
 	pubsub                 PubSub
 	isSubscriptionRejected bool
 	isConfirmationSent     bool
-	descrption             *ChannelDescripion
+	descrption             *ChannelDescription
 	streams                map[string]struct{}
 	onBroadcast            func(*Channel, []byte)
 	mu                     sync.Mutex
@@ -207,7 +207,7 @@ func (c *Channel) transmitSubscriptionRejection() {
 	c.conn.send <- message
 }
 
-func newChannel(conn *Connection, identifier string, params json.RawMessage, cd *ChannelDescripion, onBroadcast func(ch *Channel, msg []byte)) *Channel {
+func newChannel(conn *Connection, identifier string, params json.RawMessage, cd *ChannelDescription, onBroadcast func(ch *Channel, msg []byte)) *Channel {
 	if cd.Subscribed == nil {
 		cd.Subscribed = func(*Channel) {}
 	}

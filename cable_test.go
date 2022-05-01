@@ -15,6 +15,6 @@ func newTestCable() *Cable {
 		Config:              NewConfig(),
 		PubSub:              cfg.pubsub,
 		connections:         map[*Connection]struct{}{},
-		channelDescriptions: map[string]*ChannelDescripion{},
+		channelDescriptions: map[string]*ChannelDescription{},
 	}
 }
