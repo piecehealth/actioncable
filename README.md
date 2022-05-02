@@ -126,6 +126,16 @@ var roomChannel = &actioncable.ChannelDescription{
 
 // Register the channel to the cable.
 cable.RegisterChannel(roomChannel)
+
+// Broadcast message by cable.
+msg := struct{
+  Message string `json:"message"`
+  SendBy  string `json:"send_by"`
+}{
+  Message: "Hello ActionCable",
+  SendBy:  "SYSTEM",
+}
+cable.Broadcast("RoomChannel", "room_1", msg)
 ```
 
 
